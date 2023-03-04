@@ -1,6 +1,7 @@
 from random import *
 
 number = randint(1, 100)
+trials = 0
 print('Welcome to the "Guess the hidden number" game!')
 
 
@@ -35,5 +36,9 @@ while not number_guessed:
     elif is_valid(user_input):
         user_number = int(user_input)
     if compare_numbers(number, user_number):
+        trials += 1
         print('Thank you for playing! See you again')
+        print('Your number of trials:', trials)
         number_guessed = True
+    else:
+        trials += 1
