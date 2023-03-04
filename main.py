@@ -1,8 +1,11 @@
 from random import *
 
-number = randint(1, 100)
-trials = 0
-print('Welcome to the "Guess the hidden number" game!')
+
+def start_game():
+    number = randint(1, 100)
+    trials = 0
+    print('Welcome to the "Guess the hidden number" game!')
+    return number, trials
 
 
 def is_valid(num):
@@ -12,6 +15,17 @@ def is_valid(num):
         return True
     else:
         return False
+
+
+def check_answer():
+    while True:
+        answer = input()
+        if answer.upper() == 'Y':
+            return True
+        elif answer.upper() == 'N':
+            return False
+        else:
+            print('We do not understand your answer. Please try again')
 
 
 def compare_numbers(first_num, second_num):
@@ -26,8 +40,8 @@ def compare_numbers(first_num, second_num):
         return True
 
 
-number_guessed = False
-while not number_guessed:
+number, trials = start_game()
+while True:
     print('Please enter a number from 1 to 100')
     user_input = input()
     if not is_valid(user_input):
@@ -37,8 +51,12 @@ while not number_guessed:
         user_number = int(user_input)
     if compare_numbers(number, user_number):
         trials += 1
-        print('Thank you for playing! See you again')
         print('Your number of trials:', trials)
-        number_guessed = True
+        print('Do you want to play again? Y / N')
+        if check_answer():
+            number, trials = start_game()
+        else:
+            print('Thank you for playing! See you again')
+            break
     else:
         trials += 1
