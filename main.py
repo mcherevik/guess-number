@@ -11,7 +11,7 @@ def start_game():
             init_trials = 0
             return hidden_number, init_trials, int(border)
         else:
-            print('This is not a valid number')
+            print('This is not a valid number. Try again')
             continue
 
 
